@@ -43,7 +43,7 @@ const AppMenu = () => {
                 {
                     label: 'Dashboard',
                     icon: 'pi pi-fw pi-home',
-                    to: '/'
+                    to: '/dashboard'
                 }
             ]
         },
@@ -55,7 +55,7 @@ const AppMenu = () => {
                     icon: 'pi pi-fw pi-user',
                     to: '/master/pasien'
                 },
-                 {
+                {
                     label: 'Data Diagnosa',
                     icon: 'pi pi-fw pi-book',
                     to: '/master/diagnosa'
@@ -80,7 +80,7 @@ const AppMenu = () => {
                     icon: 'pi pi-fw pi-calendar',
                     to: '/pendaftaran/reservasi-pasien'
                 }
-                
+
             ]
         },
         {
@@ -109,10 +109,22 @@ const AppMenu = () => {
                 {
                     label: 'Stock Obat',
                     icon: 'pi pi-fw pi-file',
-                    to: '/farmasi/stock-obat'
-                },
+                    items: [
+                        {
+                            label: 'Obat Masuk',
+                            icon: 'pi pi-fw pi-plus',
+                            to: '/farmasi/stock-obat/masuk'
+                        },
+                        {
+                            label: 'Obat Keluar',
+                            icon: 'pi pi-fw pi-minus',
+                            to: '/farmasi/stock-obat/keluar'
+                        }
+                    ]
+                }
             ]
         },
+
         {
             label: 'Laporan/Reporting',
             items: [

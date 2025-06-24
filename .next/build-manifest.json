@@ -15,6 +15,16 @@
   ],
   "rootMainFiles": [],
   "pages": {
+    "/": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/index.js"
+    ],
+    "/404": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/404.js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -25,45 +35,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/farmasi/penebusan-obat": [
+    "/dashboard": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/farmasi/penebusan-obat.js"
+      "static/chunks/pages/dashboard.js"
     ],
-    "/master/diagnosa": [
+    "/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/master/diagnosa.js"
-    ],
-    "/master/obat": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/master/obat.js"
-    ],
-    "/master/pasien": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/master/pasien.js"
-    ],
-    "/pemeriksaan/antrian-pasien": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/pemeriksaan/antrian-pasien.js"
-    ],
-    "/pemeriksaan/pemeriksaan-dokter": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/pemeriksaan/pemeriksaan-dokter.js"
-    ],
-    "/pendaftaran/pendaftaran-pasien": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/pendaftaran/pendaftaran-pasien.js"
-    ],
-    "/pendaftaran/reservasi-pasien": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/pendaftaran/reservasi-pasien.js"
+      "static/chunks/pages/login.js"
     ]
   },
   "ampFirstPages": []
