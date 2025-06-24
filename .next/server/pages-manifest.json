@@ -2,7 +2,12 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/farmasi/penebusan-obat": "pages/farmasi/penebusan-obat.js",
+  "/pendaftaran/reservasi-pasien": "pages/pendaftaran/reservasi-pasien.js",
   "/pemeriksaan/pemeriksaan-dokter": "pages/pemeriksaan/pemeriksaan-dokter.js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/404": "pages/404.js"
+  "/master/pasien": "pages/master/pasien.js",
+  "/pendaftaran/pendaftaran-pasien": "pages/pendaftaran/pendaftaran-pasien.js",
+  "/pemeriksaan/antrian-pasien": "pages/pemeriksaan/antrian-pasien.js",
+  "/master/diagnosa": "pages/master/diagnosa.js",
+  "/master/obat": "pages/master/obat.js"
 }

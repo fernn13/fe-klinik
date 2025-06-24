@@ -114,21 +114,6 @@ const AppMenu = () => {
             ]
         },
         {
-            label: 'Rekam Medis',
-            items: [
-                {
-                    label: 'File Dokumen',
-                    icon: 'pi pi-fw pi-file',
-                    to: '/rekam-medis/file-dokumen'
-                },
-                {
-                    label: 'Tracer Rekam Medis',
-                    icon: 'pi pi-fw pi-book',
-                    to: '/rekam-medis/tracer-rekam-medis'
-                }
-            ]
-        },
-        {
             label: 'Laporan/Reporting',
             items: [
                 {
