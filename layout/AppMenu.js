@@ -131,22 +131,22 @@ const AppMenu = () => {
                 {
                     label: 'Report Pendaftaran Pasien',
                     icon: 'pi pi-fw pi-arrow-up-right',
-                    to: '/laporan/report-pendaftaran-pasien'
+                    to: '/dashboard'
                 },
                 {
                     label: 'Report Statistik Kunjungan',
                     icon: 'pi pi-fw pi-arrow-up-right',
-                    to: '/laporan/report-rekam-medis'
+                    to: '/dashboard'
                 },
                 {
                     label: 'Rekap Kunjungan',
                     icon: 'pi pi-fw pi-arrow-up-right',
-                    to: '/laporan/report-rekam-medis'
+                    to: '/dashboard'
                 },
                 {
                     label: 'Histori Semua Transaksi ',
                     icon: 'pi pi-fw pi-arrow-up-right',
-                    to: '/laporan/report-rekam-medis'
+                    to: '/dashboard'
                 }
             ]
         },

@@ -9,17 +9,18 @@ import dayjs from "dayjs";
 import { Axios } from "../../../lib/Axios";
 
 export default function PageAntrian() {
-  const [rows, setRows]   = useState([]);
+  const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
   const toast = useRef(null);
 
-  /* ───── ambil antrian hari ini ───── */
   const fetchAntrian = async () => {
     setLoading(true);
     try {
-      const res = await Axios.get("/antrian");   // GET /api/antrian
+      const res = await Axios.get("/antrian"); // GET /api/antrian
+      console.log("DATA ANTRIAN:", res.data.data); // tambahkan ini
       setRows(res.data.data);
     } catch (e) {
+      console.error("ERROR FETCH:", e);
       toast.current.show({
         severity: "error",
         summary: "Error",
@@ -29,6 +30,7 @@ export default function PageAntrian() {
       setLoading(false);
     }
   };
+
 
   /* ───── ubah status menunggu → dipanggil → selesai ───── */
   const updateStatus = async (id, status) => {
@@ -75,23 +77,37 @@ export default function PageAntrian() {
     </div>
   );
 
+  const renderTabelRuangan = (kodeRuangan, namaRuangan) => {
+    const data = rows.filter((r) => r.ruangan === kodeRuangan);
+    return (
+      <div className="mb-8">
+        <h3 className="text-xl font-semibold mb-2">{namaRuangan}</h3>
+        <DataTable value={data} loading={loading} responsiveLayout="scroll" stripedRows>
+          <Column field="no_antrian" header="No Antrian" />
+          <Column field="nama" header="Nama Pasien" />
+          <Column field="ruangan" header="Poli" />
+          <Column
+            field="waktu_masuk"
+            header="Waktu Masuk"
+            body={(row) => dayjs(row.waktu_masuk).format("DD/MM/YYYY HH:mm")}
+          />
+          <Column field="status" header="Status" />
+          <Column header="Aksi" body={actionTemplate} style={{ minWidth: "160px" }} />
+        </DataTable>
+      </div>
+    );
+  };
+
+
   return (
     <div className="card mx-auto max-w-5xl">
       <Toast ref={toast} />
-      <h2 className="text-2xl mb-3">Antrian Pasien Hari Ini</h2>
+      <h2 className="text-2xl mb-6 font-bold">Antrian Pasien Hari Ini</h2>
 
-      <DataTable value={rows} loading={loading} responsiveLayout="scroll" stripedRows>
-        <Column field="no_antrian"   header="No Antrian" />
-        <Column field="nama"         header="Nama Pasien" />
-        <Column field="ruangan"      header="Poli" />
-        <Column
-          field="waktu_masuk"
-          header="Waktu Masuk"
-          body={(row) => dayjs(row.waktu_masuk).format("DD/MM/YYYY HH:mm")}
-        />
-        <Column field="status"       header="Status" />
-        <Column header="Aksi" body={actionTemplate} style={{ minWidth: "160px" }} />
-      </DataTable>
+      {renderTabelRuangan("Pemeriksaan Umum", "Pemeriksaan Umum")}
+      {renderTabelRuangan("Poli Anak", "Poli Anak")}
+      {renderTabelRuangan("Poli Gigi", "Poli Gigi")}
+
     </div>
   );
 }
