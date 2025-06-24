@@ -130,14 +130,19 @@ const PendaftaranPasien = () => {
     };
 
     useEffect(() => {
-        getPendaftaran();
-    }, []);
+        const id = router.query.id;
+        if (id) {
+            getDetailPasien(id);
+        }
+    }, [router.query.id]);
+
 
     const handleSave = async (input) => {
         try {
             let endPoint;
 
             let body = {
+                id: input.id,
                 nama: input.nama,
                 tempat_lahir: input.tempat_lahir,
                 tgl_lahir: input.tgl_lahir,
@@ -152,10 +157,11 @@ const PendaftaranPasien = () => {
             };
             if (input.id) {
                 endPoint = '/pendaftaran/update';
-                body.id = input.id;
             } else {
                 endPoint = '/pendaftaran/store';
             }
+
+
 
             console.log(body)
             // Kirim data ke server
@@ -191,6 +197,31 @@ const PendaftaranPasien = () => {
         }
     };
 
+    const getDetailPasien = async (id) => {
+        try {
+            const res = await Axios.get(`/pendaftaran/show?id=${id}`);
+            const data = res.data.data;
+
+            formik.setValues({
+                id: data.id,
+                nama: data.nama,
+                tempat_lahir: data.tempat_lahir,
+                tgl_lahir: new Date(data.tgl_lahir),
+                jns_kelamin: data.jns_kelamin,
+                alamat: data.alamat,
+                no_tlp: data.no_tlp,
+                pendidikan: data.pendidikan,
+                pekerjaan: data.pekerjaan,
+                no_ktp: data.no_ktp,
+                no_asuransi: data.no_asuransi,
+                jns_asuransi: data.jns_asuransi,
+            });
+
+            setDataPendaftaran((p) => ({ ...p, edit: true }));
+        } catch (error) {
+            showError("Gagal mengambil data pasien");
+        }
+    };
 
     return (
         <div className='card max-w-4xl mx-auto'>

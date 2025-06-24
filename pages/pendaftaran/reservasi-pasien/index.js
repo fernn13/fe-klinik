@@ -78,19 +78,12 @@ const ReservasiPasien = () => {
   });
 
   const openEditDialog = (rowData) => {
-    setIsEdit(true);
-    setIsDelete(false);
-    setDialogVisible(true);
-    setSelectedPatient(rowData);
-    formik.setValues({
-      id: rowData.id,
-      no_rm: rowData.no_rm,
-      tgl_reservasi: rowData.tgl_reservasi,
-      kode_kunjungan: rowData.kode_kunjungan,
-      ruangan: rowData.ruangan,
-      keluhan: rowData.keluhan
+    router.push({
+      pathname: '/pendaftaran/reservasi-pasien/form',
+      query: { id: rowData.id }
     });
   };
+
 
   const openDeleteDialog = (rowData) => {
     setIsEdit(false);

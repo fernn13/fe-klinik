@@ -96,11 +96,6 @@ const AppMenu = () => {
                     icon: 'pi pi-fw pi-calendar',
                     to: '/pemeriksaan/pemeriksaan-dokter'
                 },
-                {
-                    label: 'Laboratorium',
-                    icon: 'pi pi-fw pi-book',
-                    to: '/pemeriksaan/pemeriksaan-lab'
-                },
             ]
         },
         {

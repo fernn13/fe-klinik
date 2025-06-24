@@ -3,6 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/pemeriksaan/pemeriksaan-dokter": "pages/pemeriksaan/pemeriksaan-dokter.js",
-  "/login": "pages/login.js",
-  "/": "pages/index.js"
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/404": "pages/404.js"
 }

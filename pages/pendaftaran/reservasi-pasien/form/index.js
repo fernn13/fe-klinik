@@ -24,6 +24,8 @@ const ReservasiPasien = () => {
     const router = useRouter();
     const [searchVal, setSearchVal] = useState('');
     const [filteredKTP, setFilteredKTP] = useState([]);
+    const [isEdit, setIsEdit] = useState(false);
+
 
     const searchKTP = (e) => {
         const query = e.query?.toLowerCase() || '';
@@ -38,9 +40,6 @@ const ReservasiPasien = () => {
         );
         setFilteredKTP(filtered);
     };
-
-
-
 
     const [dataReservasi, setDataReservasi] = useState({
         data: [],
@@ -73,7 +72,6 @@ const ReservasiPasien = () => {
     const showError = (detail) => {
         toast.current.show({ severity: 'error', summary: 'Error Message', detail: detail, life: 3000 });
     };
-
 
     const formik = useFormik({
         initialValues: {
@@ -127,6 +125,19 @@ const ReservasiPasien = () => {
         getPendaftaran();
 
     }, []);
+
+    useEffect(() => {
+        const { id } = router.query;
+        if (id) {
+            setIsEdit(true);              // Tambahkan ini
+            getDetailReservasi(id);
+        } else {
+            setIsEdit(false);             // Reset mode edit
+            formik.resetForm();
+        }
+    }, [router.query]);
+
+
     useEffect(() => {
         if (searchVal) {
             const filtered = dataPendaftaran.data.filter((item) =>
@@ -172,6 +183,8 @@ const ReservasiPasien = () => {
             const e = error?.response?.data || error;
             showError(e?.message || 'Terjadi Kesalahan');
         }
+        setIsEdit(false);
+
     };
 
     const getReservasi = async () => {
@@ -217,6 +230,29 @@ const ReservasiPasien = () => {
         }
 
     };
+
+    const getDetailReservasi = async (id) => {
+        try {
+            const res = await Axios.get(`/reservasi/show?id=${id}`);
+            const data = res.data.data;
+
+            formik.setValues({
+                id: data.id,
+                no_rm: data.no_rm || '',
+                no_ktp: data.pendaftaran?.no_ktp || '', // dari relasi
+                nama: data.pendaftaran?.nama || '',     // dari relasi
+                tgl_reservasi: new Date(data.tgl_reservasi),
+                kode_kunjungan: data.kode_kunjungan || '',
+                ruangan: data.ruangan || '',
+                keluhan: data.keluhan || ''
+            });
+        } catch (err) {
+            console.error(err);
+            showError('Gagal mengambil data reservasi');
+        }
+    };
+
+
 
     return (
         <div className='card max-w-4xl mx-auto'>
@@ -351,7 +387,13 @@ const ReservasiPasien = () => {
                             {isFormFieldInvalid('ruangan') ? getFormErrorMessage('ruangan') : ''}
                         </div>
                     </div>
-                    <Button type="submit" label={dataReservasi.edit ? 'Update' : 'Save'} className="mt-2 mr-2" loading={dataReservasi.load} />
+                    <Button
+                        type="submit"
+                        label={isEdit ? 'Update' : 'Save'}
+                        className="mt-2 mr-2"
+                        loading={dataReservasi.load}
+                    />
+
                     <Button type="button" onClick={() => router.push('/pendaftaran/reservasi-pasien')} className="mt-2 p-button-secondary">
                         Back
                     </Button>

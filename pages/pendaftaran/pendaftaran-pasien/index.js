@@ -114,7 +114,14 @@ const PendaftaranPasien = () => {
 
     const actionBodyTemplate = (rowData) => (
         <>
-            <Button icon="pi pi-pencil" severity="success" rounded className="mr-2" onClick={() => openEditDialog(rowData)} />
+            <Button
+                icon="pi pi-pencil"
+                severity="success"
+                rounded
+                className="mr-2"
+                onClick={() => router.push(`/pendaftaran/pendaftaran-pasien/form?id=${rowData.id}`)}
+            />
+
             <Button icon="pi pi-trash" severity="danger" rounded onClick={() => openDeleteDialog(rowData)} />
         </>
     );
@@ -267,33 +274,6 @@ const PendaftaranPasien = () => {
 
                 {viewMode === 'form' && (
                     <>
-                        {/* <div className="text-sm text-gray-700 space-y-4">
-                            <h5 className="text-base font-semibold border-b pb-2 flex items-center gap-2">
-                                <i className="pi pi-calendar-plus" /> Formulir Reservasi
-                            </h5>
-
-                            <div className="p-fluid space-y-3">
-                                <span className="p-float-label">
-                                    <InputText id="keperluan" />
-                                    <label htmlFor="keperluan">Keperluan</label>
-                                </span>
-
-                                <span className="p-float-label">
-                                    <Calendar id="tanggal" dateFormat="dd/mm/yy" />
-                                    <label htmlFor="tanggal">Tanggal Reservasi</label>
-                                </span>
-
-                                <div className="flex gap-2 pt-2">
-                                    <Button label="Kirim" icon="pi pi-check" className="p-button-success w-full" />
-                                    <Button
-                                        label="Kembali"
-                                        icon="pi pi-arrow-left"
-                                        className="p-button-secondary w-full"
-                                        onClick={() => setViewMode('detail')}
-                                    />
-                                </div>
-                            </div>
-                        </div> */}
                         <ReservasiPasien />
                     </>
                 )}
